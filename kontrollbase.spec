@@ -1,4 +1,6 @@
-%define		subver	beta_r50
+# TODO
+# - system extjs package
+%define		subver	rev312
 %define		rel		0.1
 Summary:	Enterprise grade MySQL monitoring and analytics
 Name:		kontrollbase
@@ -6,10 +8,10 @@ Version:	2.0.1
 Release:	0.%{subver}.%{rel}
 License:	New BSD License
 Group:		Applications/WWW
-Source0:	http://kontrollbase.googlecode.com/files/%{name}-%{version}-%{subver}.tar.gz
-# Source0-md5:	e8b456e6ce91d8b4ac50d12767034041
+Source0:	http://kontrollbase.googlecode.com/files/%{name}-%{subver}.tar.gz
+# Source0-md5:	de68aac4e8ec18c0adea8a76f0e455a3
 URL:		http://code.google.com/p/kontrollbase/
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.553
 Requires:	webapps
 Requires:	webserver(access)
 Requires:	webserver(php)
@@ -52,7 +54,8 @@ An Enterprise Class MySQL Monitoring and Analytics Application
   for you.
 
 %prep
-%setup -q -n %{name}-rev50
+%setup -q -n %{name}-%{subver}
+%undos -f js,php
 
 cat > apache.conf <<'EOF'
 Alias /%{name} %{_appdir}
